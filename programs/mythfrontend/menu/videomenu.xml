@@ -1,0 +1,148 @@
+<mythmenu name="VIDEO">
+
+   <button>
+     <type>VIDEO_BROWSER</type>
+     <text>Browse Videos</text>
+     <text lang="ES">Ver Videos</text>
+     <text lang="CA">Veure vídeos</text>
+     <text lang="DE">Videos ansehen</text>
+     <text lang="DK">Gennemse film</text>
+     <text lang="PT">Navegar na Biblioteca de Filmes</text>
+     <text lang="SV">Bläddra bland filmer</text>
+     <text lang="FR">Parcourir les vidéos</text>
+     <text lang="NL">Blader door videos</text>
+     <text lang="JA">ビデオブラウズ</text>
+     <text lang="SI">Iskanje filmov</text>
+     <text lang="FI">Selaa Videoita</text>
+     <text lang="ET">Filmide brausimine</text>
+     <text lang="RU">Браузер фильмов</text>
+     <text lang="PL">Przeglądaj filmy</text>
+     <action>BROWSER</action>
+   </button>
+
+  <button>
+     <type>VIDEO_LIST</type>
+     <text>Video List</text>
+     <text lang="ES">Listar Videos</text>
+     <text lang="CA">Llistar vídeos</text>
+     <text lang="DK">Film oversigt</text>
+     <text lang="DE">Liste</text>
+     <text lang="PT">Lista de Filmes</text>
+     <text lang="SV">Filmlista</text>
+     <text lang="FR">Liste des vidéos</text>
+     <text lang="NL">Video Verkenner</text>
+     <text lang="JA">ビデオリスト</text>
+     <text lang="SI">Seznam filmov</text>
+     <text lang="FI">Videolistaus</text>
+     <text lang="ET">Filmide nimekiri</text>
+     <text lang="RU">Список фильмов</text>
+     <text lang="PL">Lista filmów</text>
+     <action>LISTING</action>
+   </button>
+
+   <button>
+     <type>VIDEO_GALLERY</type>
+     <text>Video Gallery</text>
+     <text lang="FR">Gallerie vidéo</text>
+     <text lang="DE">Galerie</text>
+     <text lang="SI">Galerija filmov</text>
+     <text lang="FI">Videogalleria</text>
+     <text lang="FR">Gallerie des vidéos</text>
+     <text lang="DK">Film Galleri</text>
+     <text lang="SV">Filmgalleri</text>
+     <text lang="PT">Galeria de Filmes</text>
+     <text lang="ES">Galería</text>
+     <text lang="ET">Filmide galerii</text>
+     <text lang="RU">Галерея фильмов</text>
+     <text lang="PL">Galeria filmów</text>
+     <action>GALLERY</action>
+   </button>
+
+   <button>
+     <type>VIDEO_MANAGER</type>
+     <text>Video Manager</text>
+     <text lang="ES">Gestionar Videos</text>
+     <text lang="CA">Gestionar vídeos</text>
+     <text lang="DK">Film opsætning</text>
+     <text lang="DE">Video-Manager</text>
+     <text lang="PT">Gestor de Filmes</text>
+     <text lang="SV">Filmhanterare</text>
+     <text lang="FR">Gestion des vidéos</text>
+     <text lang="NL">Video's Beheren</text>
+     <text lang="JA">ビデオマネージャー</text>
+     <text lang="SI">Upravitelj filmov</text>
+     <text lang="FI">Videohallinta</text>
+     <text lang="ET">Filmihaldus</text>
+     <text lang="RU">Менеджер фильмов</text>
+     <text lang="PL">Zarządzaj filmami</text>
+     <action>MANAGER</action>
+   </button>
+
+<!--
+   <button>
+      <type>DVD_PLAY</type>
+      <text>Play DVD</text>
+      <text lang="DK">Afspil DVD</text>
+      <text lang="PT">Ver DVD</text>
+      <text lang="DE">DVD abspielen</text>
+      <text lang="SV">Spela DVD</text>
+      <text lang="ES">Ver DVD</text>
+      <text lang="CA">Veure DVD</text>
+      <text lang="FR">Lecture DVD</text>
+      <text lang="NL">DVD Afspelen</text>
+      <text lang="JA">DVD再生</text>
+      <text lang="NB">Spill av DVD</text>
+      <text lang="FI">Toista DVD</text>
+      <text lang="ET">DVD mängimine</text>
+      <text lang="RU">Смотреть DVD</text>
+      <text lang="PL">Odtwarzaj DVD</text>
+      <action>DVD_PLAY</action>
+   </button>
+
+   <button>
+      <type>VCD_PLAY</type>
+      <text>Play VCD</text>
+      <text lang="DK">Afspil VCD</text>
+      <text lang="FR">Lecture VCD</text>
+      <text lang="PT">Ver VCD</text>
+      <text lang="DE">VCD abspielen</text>
+      <text lang="NL">VCD Afspelen</text>
+      <text lang="JA">VCD再生</text>
+      <text lang="FI">Toista VCD</text>
+      <text lang="ET">VCD mängimine</text>
+      <text lang="RU">Смотреть VCD</text>
+      <text lang="PL">Odtwarzaj VCD</text>
+      <action>VCD_PLAY</action>
+   </button>
+
+   <button>
+      <type>DVD_RIP</type>
+      <text>Rip DVD</text>
+      <text lang="DK">Genkod DVD</text>
+      <text lang="PT">Importar DVD p/ Disco</text>
+      <text lang="DE">DVD importieren</text>
+      <text lang="SV">Kopiera DVD</text>
+      <text lang="ES">"Ripear" DVD</text>
+      <text lang="CA">Volcar DVD</text>
+      <text lang="FR">Encoder un DVD</text>
+      <text lang="NL">DVD Rip</text>
+      <text lang="JA">DVDリッピング</text>
+      <text lang="FI">Kopioi DVD</text>
+      <text lang="ET">DVD rippimine</text>
+      <text lang="RU">Импортировать DVD</text>
+      <text lang="PL">Zrzucaj DVD</text>
+      <action>DVD_RIP</action>
+   </button>
+
+   <button>
+      <type>EJECT</type>
+      <text>Eject media</text>
+      <text lang="ET">Meedia väljastamine</text>
+      <text lang="RU">Достать диск</text>
+      <text lang="FR">Ejecter un média</text>
+      <text lang="PL">Wysuń tackę</text>
+      <action>EJECT</action>
+   </button>
+-->
+
+</mythmenu>

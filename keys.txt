@@ -1,0 +1,325 @@
+Various keys and their actions:
+
+mythfrontend
+------------
+
+- Arrow keys are used to move the highlight point around.
+- ALT-F4 to exit out of the application.
+- Space or Enter to take action on the item under the highlight point.
+- P to play in both "Watch a Recording" and "Delete a Recording".
+- D to delete in both "Watch a Recording" and "Delete a Recording".
+- E to enter the Custom Record editor for the selected title on the EPG,
+    "Program Finder", "Upcoming Recordings" and search results screens.
+- U to view details for the currently selected show on the Watch or
+    Delete screens, EPG, "Program Finder", "Upcoming Recordings"
+    and search results screens.
+- O to list the upcoming episodes for the currently selected show
+    on any page where a show title may be highlighed.
+- I to edit recording options from any of the pages for scheduling
+    recordings. From the Watch and Delete screens, 'I' presents options
+    for recorded shows such as Auto Expire or Stop Recording.
+- Y on the "Upcoming Recordings" page switches which capture cards'
+    items are displayed in the highlight color.
+
+Watching TV or a recording
+--------------------------
+
+- P   Pause / Play.
+      You may also add an explicit keybinding for "Play" through the
+      MythWeb keybindings page, returning you to normal speed if you
+      are in slow-motion, rewind, fast forward or pause mode.
+- ESC Exit player if no OSD on screen, otherwise exit OSD.
+- I   Puts the On-screen Display up again.
+      During playback, 'I' toggles between position and show description info.
+      If a number of minutes is entered, jump to that position.
+- M   Menu (allows access to EPG and many other useful features
+- K   Jumps to the bookmark position.
+- T   In North America this toggles closed caption support.
+- T   In Europe follow this with the teletext page and another T
+- F   Rotate between the various Picture Adjustments (Colour, Hue, etc.)
+      While Picture Adjustment is on-screen, use Left and Right arrows
+      to adjust. These settings adjust the look of the video playback,
+      and are independent of the G-key settings used at record-time.
+      The Xv picture controls must be enabled in the Playback settings.
+- U   Increase the play speed [muted]
+- J   Decrease the play speed [muted]
+- A   Adjust time stretch (speed up or slow down play speed [with audio])
+      Use the arrow keys to make adjustment.
+- W   Cycle through zoom modes: Half, Full, Stretch
+- Ctrl-W Force aspect ratio of video to be treated as either 4:3 or 16:9
+- S   Display the Program Guide (EPG).
+- F6  Display the Program Finder.
+- F8  Cycle through sleep timer settings Off->30m->1hr->1hr30m->2hr->Off
+- Left arrow  Skip back
+- Right arrow Skip ahead
+  NOTE: During playback of a recording you can enter a number of minutes to
+        jump before using the Skip key. Otherwise, the configured defaults
+        will be used. Seconds can be entered by entering four digits in the
+        MMss format.
+
+- Page Up     Jump back the configured number of minutes.  (default is 10)
+- Page Down   Jump ahead the configured number of minutes. (default is 10)
+- Z or End    Skip to next commercial break marker
+- Q or Home   Skip back to previous commercial break marker
+- + or -      Cycle through audio streams
+- | or F9     Toggle mute
+- [ or F10    Decrease volume
+- ] or F11    Increase volume
+- Ctrl+B      Jump to the beginning of the recording / ringbuffer.
+
+When in Teletext Menu mode:
+- Up/Down     Previous/Next Page
+- Left/Right  Previous/Next Subpage
+- T           Exit Teletext Menu
+- F2-F6       Menu Red, Green, Yellow, Blue, or White, respectively
+- F7          Toggle Background on/off
+- F8          Reveal hidden text.
+
+When MHEG ITV is enabled:
+- F2-F5       Menu Red, Green, Yellow, or Blue, respectively
+- F6          Exit key, exits from interactive mode on some channels
+- F7          Text key, enters interactive mode on some channels
+- F12         EPG key, enters EPG mode (New Zealand only).
+  The effect of these keys depends on what is being displayed.  The arrow,
+  Enter, and 0-9 keys may also be used.
+
+Without the stickykeys option selected:
+
+- Left arrow to rewind the configured number of seconds.  (default is 5)
+- Right arrow to fast forward the configured number of seconds. (default is 30)
+- < starts rewind mode as if stickykeys are selected.
+    If a jump amount is entered, jump to that position.
+- > starts fast forward mode as if stickykeys are selected.
+    If a jump amount is entered, jump that amount from the end.
+
+With the stickykeys option selected:
+
+- Right starts fast forward mode.
+- Left starts rewind mode.
+   While in fast forward or rewind mode.
+   - Left/Right increases the ff/rew speed.
+   - 0 plays at normal speed, but leaves the time indicator on screen.
+   - 1 or 2 plays back more slowly than normal ff/rew speed (1 is slowest).
+   - 3 plays back at normal ff/rew speed.
+   - 4 - 9 plays back faster than normal ff/rew speed (9 is fastest).
+   - Space exits fast forward or rewind mode.
+
+With the video paused:
+
+- Left arrow   Rewind one frame
+- < or comma   Rewind one second
+- Right arrow  Advance one frame
+- > or period  Advance one second
+
+Watching TV only:
+
+- 0-9    Enter a channel number...
+         If the channel is not unique or smart channel change is disabled
+         press Return/OK when done, to commit the channel change.
+- G      Rotate between the various Picture Adjustments (Colour, Hue, etc.)
+         for recording.  These values affect the look for all recordings made
+         with the current capture card and are independent of the playback
+         picture settings. While Picture Adjustment is on-screen, use Left and
+         Right arrows to adjust.
+- Ctrl-G The same as G, except it affects the look for all recordings made
+         on the current channel, independent of the capture card used.
+- H      Channel history. Each repeat steps back through the previous channels.
+- O      Turns on 'Browse' mode, allowing user to browse channels and program
+         info while watching current show FullScreen.
+- /      Change to the next "favorite" channel
+- ?      Mark/Unmark the current channel as a "favorite" channel
+- Y      Switch to the next available capture source
+- Ctrl-Y Switch to the previous capture source
+- C      Change to the next available tuner card input
+- F7     Monitor signal quality on a card capable of signal monitoring
+
+LiveTV while not in Browse Mode:
+- Up/Down arrows  Change the channel.
+
+LiveTV Browse Mode:
+- Left          browse program prior to current listed program.
+- Right         browse program following current listed program.
+- Up            browse program on channel above current listed channel/program.
+- Down          browse program on channel below current listed channel/program.
+- /             browse program on next favorite channel.
+- 0-9           enter a channel number to browse.
+- Space/Enter   change channel to channel of current listed program.
+- R             Toggle recording of current program (cycles through types)
+- ESC/O         Exit Browse mode.
+
+Playback Recording
+- Y   Adjust Audio Sync
+- R   Cycle Commercial-Skip Mode
+
+Playback Recording Zoom Mode:
+- Left          Move video to Left
+- Right         Move video to Right
+- Up            Move video Up
+- Down          Move video Down
+- PageUp        Zoom In
+- PageDown      Zoom Out
+- Space/Enter   Exit Zoom mode leaving picture at current size and position
+- ESC           Exit Zoom mode and return to original size.
+
+If you have two or more tuner cards:
+
+- V toggle Picture-in-picture on or off
+- B toggles the window focus (lets you change channels on the PiP window).
+- N swaps the two channels by changing channels on both cards.
+
+While watching a recording:
+
+- SPACE or ENTER will set a bookmark at that point.  Next time you start the 
+  recording, you will automatically jump forward to this point and clear the 
+  bookmark.
+- E or M enters/exits edit mode.
+  - The left and right keys move forward and backward.
+  - The up and down arrow keys alter the amount of time you jump forward and
+    backward.  Increments are: nearest cutpoint, nearest video keyframe, 
+    1 frame, 0.5 seconds, 1 second, 20 seconds, 1 minute, 5 minutes, and 
+    10 minutes.
+  - The page up and down keys move forward and backward to the nearest cut
+    point.
+  - The < or comma and > or period keys move forward or backward by 10 times
+    the normal jump amount.
+  - Space/Enter allows you to set or delete a cut point.
+  - 'Z' loads the commercial skip list (if one exists) into the cutlist.
+  - 'C' and 'Q' clear all cut points in the cutlist.
+  - 'I' inverts the cutlist.
+- X queues the current recording for transcoding.
+- O brings up menu to allow toggling settings such as Commercial Auto-Skip,
+    Auto-Expire, etc.
+- D exits the current recording and displays the Delete menu for it.
+
+
+EPG
+---
+
+- Arrow keys are used to move the highlighted program point around.
+- The keys A, D, S, W perform the same as left, right, down and up.
+- PageUp and PageDown move the channel list up or down a page.
+- Home and End move the highlight left or right by one day.
+- Control-Left and Control Right, <, >, period and comma keys move the
+  highlight left or right by one page.
+- The keys 9, 3, 7 and 1 (like a numeric keypad) perform the same as PageUp,
+  PageDown, Home and End.
+- I will bring up more information about a show, and allow you to schedule 
+  a recording.
+  -  If you select "Record this showing" while watching Live TV you can
+     "Instant Record" a program.
+- Space or Enter will allow you resolve conflicts or change overrides.
+  If the program is not already scheduled to record, it will act like 
+  pressing I instead.
+- Pressing M when on a channel will change to that channel.
+- Pressing ESC or C exits without changing the channel.
+- Pressing R will change the current item from Recording/Not-Recording.
+  Successive keypresses cycle through the scheduled recording type list.
+- Pressing X will change the channel to the currently selected channel without
+  leaving the EPG (Most useful in the alternate EPG)
+- Pressing '?' will mark/unmark the current channel as a "favorite"
+- Pressing '/' or 4 will toggle the guide listing between all channels and
+  "favorites".
+
+Set Program Recording Priorities and Set Channel Recording Priorities
+---------------------------------------------------------------------
+
+- Right increases priority value.
+- Left decreases priority value.
+- 1 sorts by title.
+- 2 sorts by priority.
+- Home/End to toggle sort priority.
+- I to edit recording options.
+- ESC commits changes and exits.
+
+Viewing Scheduled Recordings/Resolving Conflicts
+-------------------------------------------------
+
+- 1 to show all recordings.
+- 2 to show only important recordings.
+- Home/End to toggle show showing all/important.
+- I to edit recording options.
+- Space or Enter to resolve conflict or override.
+
+Viewing Search Listings
+-----------------------
+- Home to change to the previous view if applicable.
+- End to change to the next view if applicable.
+- M to select another view if applicable.
+  - In the title and description search popup, press M again to edit or 
+    delete the selected view.
+
+Program Finder
+--------------
+- R will change the current item from Recording/Not-Recording.
+  Successive keypresses cycle through the scheduled recording type list.
+- 4 switch to the Program Guide.
+- 5 move to the middle of the active list.
+
+Recording Profiles Setup Screen
+-------------------------------
+
+- D on a custom profile group displays a popup to delete the group.
+
+Recording Groups
+----------------
+
+Recording Groups allow you to separate programs into user-defined
+categories, such as "Kids", "Alice", "Bob", etc.  This can be used to reduce
+clutter, or to segregate content if you use the PIN function.
+
+In the Watch Recordings Screen
+- M to change the view or to set a group password
+- I to move a program from one Recording Group to another
+
+Watch Recordings Screen
+-----------------------
+
+- "1" or F1 to get a popup on the meaning of the icons
+- / to tag a recording.  Tagged recordings can be played (in order or
+    shuffled) and deleted as a group.  You can also change the
+    recording group for several recordings at once by tagging them and
+    using the popup INFO menu to change the recording group.
+- ? to clear the tagged list.
+
+Remote Controls
+---------------
+
+If you are using MythTV with just a remote control then it is suggested that you
+map the remote control keys as described below.  Your remote control may not
+have the same set of keys as those named below, the names are only a suggestion
+that roughly correspond to the function.
+
+If you are adding new key bindings to the program then consideration of this
+suggested list will help users with remote controls.
+
+This list assumes a minimal remote control that only has 20 keys, nearly all
+features can be used with this configuration.  If you have more keys then you
+can access all of the features.  With only 16 keys most features are usable.
+
+
+Remote Control          LIRC Keystroke    Function
+--------------          --------------    --------
+
+0 - 9                   0 - 9             channel selection, EPG navigation,
+                                          ff/rew speed setting (with stickykeys)
+
+Left Arrow              Left              scroll left, rewind
+Right Arrow             Right             scroll right, fast forward
+
+Up Arrow                Up                scroll up, channel change up
+Down Arrow              Down              scroll down, channel change down
+
+Select / OK / Play      Space             Select item, play (with stickykeys)
+                                          set bookmark
+
+Cancel                  Escape            Cancel, quit playback
+
+Menu                    m                 EPG (from watching TV)
+                                          edit (from playback).
+
+Pause                   p                 Pause
+
+Other key 1             i                 Information
+
+Other key 2             c                 Change tuner card input
+

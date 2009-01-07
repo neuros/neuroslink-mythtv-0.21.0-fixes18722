@@ -1,0 +1,181 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="LinuxDoc-Tools 0.9.21">
+ <TITLE>Installing and using MythTV: System Configuration Requirements for Compiling MythTV. </TITLE>
+ <LINK HREF="mythtv-HOWTO-5.html" REL=next>
+ <LINK HREF="mythtv-HOWTO-3.html" REL=previous>
+ <LINK HREF="mythtv-HOWTO.html#toc4" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="mythtv-HOWTO-5.html">Next</A>
+<A HREF="mythtv-HOWTO-3.html">Previous</A>
+<A HREF="mythtv-HOWTO.html#toc4">Contents</A>
+<HR>
+<H2><A NAME="Setting_up_paths"></A> <A NAME="s4">4.</A> <A HREF="mythtv-HOWTO.html#toc4">System Configuration Requirements for Compiling MythTV. </A></H2>
+
+<P>Before you compile MythTV from the current source tarball or from
+<B>subversion</B>, you may need to modify your system configuration in a
+few ways.</P>
+<P>In general, if you install MythTV from pre-packaged binaries for your Linux
+distribution/version, you don't need to be too concerned about the issues in
+this section of the HOWTO - the install script for the packages should take
+care of them. However, this section is still recommended reading which may
+help if the packager skipped a step in their packaging.</P>
+
+<H2><A NAME="ss4.1">4.1</A> <A HREF="mythtv-HOWTO.html#toc4.1">Software requirements for compiling MythTV</A>
+</H2>
+
+<H3>General requirements</H3>
+
+<P>MythTV is written in C++ and requires a fairly complete, but standard, 
+compilation environment, including a recent g++ compiler, <CODE>make</CODE>, and 
+appropriate header files for shared libraries. Any standard Linux 
+distribution should be able to install a suitable compilation environment 
+from its packaging system. Section 3.2 of this HOWTO provides some details 
+of how to install the required environment for many distributions.</P>
+<P>Subsequent sections of this chapter address the few oddities that you may 
+have to adjust by hand before you compile MythTV.</P>
+<P>The reference compilation system for MythTV is Ubuntu.</P>
+
+<H2><A NAME="ss4.2">4.2</A> <A HREF="mythtv-HOWTO.html#toc4.2">Shared-Library requirements for MythTV </A>
+</H2>
+
+<H3><A NAME="modifying_ld.so.conf"></A> Modifying /etc/ld.so.conf </H3>
+
+<P>The runtime manager for shared libraries, <B>/lib/ld.so</B>, gets
+information about the locations and contents of shared libraries from
+<CODE>/etc/ld.so.cache</CODE>, a file created by <B>ldconfig</B> from
+information in <CODE>/etc/ld.so.conf</CODE>.  Because MythTV installs some
+shared libraries in <CODE>/usr/local/lib</CODE>, that directory needs to be
+added to the list of directories for <B>ld.so</B> to search when doing
+runtime linking of programs, if it is not already there.
+You do this, as root, by editing <CODE>/etc/ld.so.conf</CODE>, then
+running <B>ldconfig</B>. There are many ways to do this; one that
+works is to enter this series of commands:</P>
+<P>
+<BLOCKQUOTE><CODE>
+<PRE>
+$ su -
+# echo /usr/local/lib >> /etc/ld.so.conf
+# /sbin/ldconfig
+# exit
+$
+</PRE>
+</CODE></BLOCKQUOTE>
+</P>
+<H2><A NAME="ss4.3">4.3</A> <A HREF="mythtv-HOWTO.html#toc4.3">Environment variable requirements for MythTV</A>
+</H2>
+
+<H3>General requirements</H3>
+
+<H3>QT libraries and binaries</H3>
+
+<P>The compiler needs to be able to locate QT binaries and libraries in
+order to compile MythTV. QTDIR needs to be set and the directory holding the
+QT binaries needs to be added to your PATH.  Your distribution may already
+be making these changes as a part of the installation of the software
+prerequisites detailed earlier.</P>
+<P>One way to do this is as follows: 
+<A NAME="Checking_that_it_worked"></A> </P>
+<P>Open a shell and execute the following:
+<BLOCKQUOTE><CODE>
+<PRE>
+$ echo $PATH
+/usr/local/bin:/bin:/usr/bin:/usr/X11R6/bin:/usr/games:/usr/lib/qt3/bin:/home/mythtv/bin:/usr/lib/qt3/bin
+$ echo $QTDIR
+/usr/lib/qt3
+$ which qmake
+/usr/lib/qt3/bin/qmake
+</PRE>
+</CODE></BLOCKQUOTE>
+</P>
+<P>For Mandriva, you should see a value like <CODE>/usr/lib/qt3</CODE> for
+<CODE>QTDIR</CODE> and <CODE>/usr/lib/qt3/bin</CODE> should be in $PATH.</P>
+<P>For Gentoo, you should see a value like <CODE>/usr/qt/3</CODE> for <CODE>QTDIR</CODE> 
+and <CODE>/usr/qt/3/bin</CODE> should be in $PATH.</P>
+<P>If you don't, do not proceed past this step until you have resolved this
+error. You may need to manually specify the QTDIR and PATH at the shell
+prompt before compiling.</P>
+<P>Also, check that there has been a link created in
+<CODE>/usr/lib/qt3/mkspecs</CODE> (<CODE>/usr/share/qt3/mkspecs</CODE> for Debian)
+called <CODE>default</CODE>. If not, you'll get errors during the compile. See
+the Troubleshooting Section for more information.</P>
+<H3>Distribution-Specific Notes</H3>
+
+<H3>Mandriva</H3>
+
+<P>The following instructions work for Mandriva using
+<B>bash</B> as the shell, and may be applicable for a distribution which
+uses <CODE>/etc/profile.d</CODE>.</P>
+<P>
+<FIGURE>
+<EPS FILE="stop.eps">
+<IMG SRC="stop.png">
+<CAPTION><B>NOTE</B>:  Mandriva 10 installs a <CODE>/etc/profile.d/qtdir3.sh</CODE>
+file, but it doesn't include the addition of the PATH variable.  If you're
+running Mandriva 10, don't create a <CODE>mythtv.sh</CODE> file as detailed
+below; edit the <CODE>qtdir3.sh</CODE> file and add the PATH statement within
+the if / fi block.</CAPTION>
+</FIGURE>
+
+As root, create the following file in <CODE>/etc/profile.d</CODE> The example
+filename is "mythtv.sh". Use what you feel is appropriate.</P>
+<P>Open a shell, and switch to superuser mode. </P>
+<P>
+<FIGURE>
+<EPS FILE="warning.eps">
+<IMG SRC="warning.png">
+<CAPTION><B>NOTE</B>: ^D means press CTRL and d at the same time.</CAPTION>
+</FIGURE>
+
+<BLOCKQUOTE><CODE>
+<PRE>
+$ su
+# cd /etc/profile.d
+cat > mythtv.sh
+export QTDIR=/usr/lib/qt3
+export PATH=$PATH:/usr/lib/qt3/bin
+^D
+
+# chmod a+x mythtv.sh
+# exit
+$ exit
+</PRE>
+</CODE></BLOCKQUOTE>
+
+The last two commands are to exit out of the shell. This way, when you next 
+open a shell your new commands
+will take effect.</P>
+
+<H3><A NAME="devperms"></A> Device Permissions </H3>
+
+<P>MythTV will need access to the video4linux devices on your system.  By
+default, your distribution may restrict access to these devices to the
+logged-in user, so if you will be automatically starting
+<B>mythbackend</B> from a script rather than an interactive terminal
+session you will need to make some adjustments.</P>
+<P><B>NOTE</B>: The following instructions are accurate for Mandriva.</P>
+<P>Check for a file called <CODE>/etc/security/console.perms</CODE>.  Open the file
+in your favorite text editor and look for a line that has:
+<BLOCKQUOTE><CODE>
+<PRE>
+&lt;console>  0600 &lt;v4l>        0600 root.video
+</PRE>
+</CODE></BLOCKQUOTE>
+
+and replace it with
+<BLOCKQUOTE><CODE>
+<PRE>
+&lt;console>  0666 &lt;v4l>        0666 root.video
+</PRE>
+</CODE></BLOCKQUOTE>
+</P>
+<P>What we're doing is allowing read and write access to the files in the
+video4linux directory.</P>
+<HR>
+<A HREF="mythtv-HOWTO-5.html">Next</A>
+<A HREF="mythtv-HOWTO-3.html">Previous</A>
+<A HREF="mythtv-HOWTO.html#toc4">Contents</A>
+</BODY>
+</HTML>

@@ -1,0 +1,86 @@
+<mythmenu name="LIBRARY">
+
+   <button>
+     <type>VIDEO_BROWSER</type>
+     <text>Watch Local Videos</text>
+     <text lang="IT">Guarda Video</text>
+     <text lang="ES">Ver Videos</text>
+     <text lang="CA">Veure vídeos</text>
+     <text lang="DE">Videos ansehen</text>
+     <text lang="DK">Gennemse film</text>
+     <text lang="IS">Horfa á myndir</text>
+     <text lang="PT">Ver Filmes</text>
+     <text lang="SV">Visa filmer</text>
+     <text lang="FR">Voir une vidéo</text>
+     <text lang="NL">Films Bekijken</text>
+     <text lang="JA">ビデオブラウズ</text>
+     <text lang="FI">Katso Videoita</text>
+     <text lang="ZH_TW">播放電影</text>
+     <text lang="SI">Gledanje filmov</text>
+     <text lang="ET">Video vaatamine</text>
+     <text lang="NB">Se på videoer</text>
+     <text lang="CZ">Sledovat filmy</text>
+     <text lang="RU">Смотреть фильмы</text>
+     <text lang="PL">Oglądanie filmów</text>
+     <text lang="HE">צפיה בוידאו</text>
+     <alttext lang="SV">Filmer</alttext>
+     <alttext lang="ET">Video</alttext>
+     <alttext lang="RU">Фильмы</alttext>
+     <alttext lang="PL">Filmy</alttext>
+     <action>JUMP MythVideo</action>
+     <depends>mythvideo</depends>
+   </button>
+
+   <button>
+      <type>MUSIC_PLAY</type>
+      <text>Listen to Music</text>
+      <text lang="IT">Esegui Brani Musicali</text>
+      <text lang="ES">Escuchar Música</text>
+      <text lang="CA">Escoltar Música</text>
+      <text lang="DE">Musik hören</text>
+      <text lang="DK">Afspil musik</text>
+      <text lang="IS">Spila tónlist</text>
+      <text lang="NL">Muziek Afspelen</text>
+      <text lang="PT">Tocar Músicas</text>
+      <text lang="SV">Spela musik</text>
+      <text lang="FR">Écouter de la musique</text>
+      <text lang="JA">ミュージック再生</text>
+      <text lang="FI">Kuuntele Musiikkia</text>
+      <text lang="ZH_TW">播放音樂</text>
+      <text lang="SI">Predvajanje glasbe</text>
+      <text lang="ET">Kuula muusikat</text>
+      <text lang="NB">Hør på musikk</text>
+      <text lang="CZ">Poslouchat muziku</text>
+      <text lang="RU">Слушать музыку</text>
+      <text lang="PL">Odtwarzaj muzykę</text>
+      <text lang="HE">האזנה למוסיקה</text>
+      <action>MENU listen_to_music.xml</action>
+   </button>
+   
+   <button>
+     <type>IMAGES</type>
+     <text>View Pictures</text>
+     <text lang="IT">Immagini</text>
+     <text lang="ES">Fotos</text>
+     <text lang="CA">Imatges</text>
+     <text lang="NL">Foto's</text>
+     <text lang="FR">Gallerie photo</text>
+     <text lang="DE">Bilder ansehen</text>
+     <text lang="DK">Billeder</text>
+     <text lang="IS">Ljósmyndir</text>
+     <text lang="PT">Ver Fotos</text>
+     <text lang="SV">Visa bilder</text>
+     <text lang="JA">イメージ</text>
+     <text lang="FI">Kuvagalleria</text>
+     <text lang="ZH_TW">照相館</text>
+     <text lang="SI">Gledanje slik</text>
+     <text lang="ET">Pildialbum</text>
+     <text lang="NB">Bildegalleri</text>
+     <text lang="CZ">Galerie fotek</text>
+     <text lang="RU">Изображения</text>
+     <text lang="PL">Galeria zdjęć</text>
+     <text lang="HE">גלרית תמונות</text>
+     <action>MENU view_images.xml</action>
+   </button>
+   
+</mythmenu>

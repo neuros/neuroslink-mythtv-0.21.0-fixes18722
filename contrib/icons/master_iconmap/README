@@ -1,0 +1,10 @@
+This channel_icons.pl script replaces all previous master iconmap handling by
+using services.mythtv.org as the data lookup point.  It handles icon
+downloading and database updates internally, and allows for matching on more 
+precise fields like xmltvid instead of callsign, which is not often used 
+outside of the US.
+
+master_iconmap.xml is provided for legacy reasons (until support for these
+features is added to MythTV itself), and new copies can be generated via:
+
+  ./channel_icons.pl --iconmap > master_iconmap.xml

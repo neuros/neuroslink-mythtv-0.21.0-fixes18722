@@ -1,0 +1,8 @@
+
+This directory contains two parts of metzlerbros.de's libdvb.
+    libdvbci: dvbci.h/cpp
+    libdvbmpeg: ctools.h/c, remux.h/c, ringbuffy.h/c transform.h/c
+
+Refer to the relevant files for Copyright information.
+
+Originally put together for MythTV by Ben Bucksch.

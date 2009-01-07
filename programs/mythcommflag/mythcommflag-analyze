@@ -1,0 +1,547 @@
+#!/usr/local/bin/perl -w
+
+use strict;
+use Cwd;
+use File::Basename;
+use POSIX qw(strftime);
+use DBI;
+
+sub timestamp($)
+{
+	my ($now) = @_;
+	strftime("%a %b %e %H:%M:%S %Z %Y", localtime($now));
+}
+
+sub convert($$)
+{
+	my ($from, $to) = @_;
+	my $cmd = "convert -quality 50 -resize 192x144 $from $to";
+	system($cmd);
+}
+
+sub header($)
+{
+	my ($debugdir) = @_;
+	$debugdir = basename(getcwd());
+	return <<EOM;
+<html>
+
+<head>
+
+<title>$debugdir</title>
+
+<style type="text/css">
+<!--
+body { background-color: #999; }
+.block * { vertical-align: middle; }
+img { margin: 1px; padding: 1px 10px 1px 10px; }
+-->
+</style>
+
+</head>
+
+<body>
+EOM
+}
+
+sub recordedmarkup($)
+{
+	sub mysql_params(;)
+	{
+		my @search = (
+			"mysql.txt",
+			"$ENV{HOME}/.mythtv/mysql.txt",
+			"/etc/mythtv/mysql.txt",
+			"/usr/share/mythtv/mysql.txt",
+			"/usr/local/share/mythtv/mysql.txt",
+			"/usr/local/etc/mythtv/mysql.txt",
+			);
+
+		my $file = undef;
+		foreach my $try (@search) {
+			next if !-e $try;
+			$file = $try;
+			last;
+		}
+		die "Couldn't find mysql.txt\n" if !$file;
+
+		my %params;
+		open(CONF, $file) or die "open $file: $!\n";
+		while (<CONF>){ 
+			chomp;
+			s/#.*$//;
+			next if !/\S/;
+			my ($key, $value) = m#^(.*?)\s*=\s*(.*)$#;
+			next if !$key || !$value;
+			$params{$key} = $value;
+		}
+		close(CONF);
+		\%params;
+	}
+
+	sub recordedmarkupdb($$)
+	{
+		my ($chanid, $starttime) = @_;
+
+		my $params = mysql_params();
+
+		my ($dbname, $dbhost, $dbuser, $dbpassword) =
+			@{%$params}{qw(DBName DBHostName DBUserName
+					DBPassword)};
+
+		my $dbh = DBI->connect(
+			"dbi:mysql:database=$dbname:host=$dbhost",
+			$dbuser, $dbpassword) or
+			die "Cannot connect to database: $DBI::errstr\n";
+
+		my $sql = qq{SELECT mark,type
+			FROM recordedmarkup
+			WHERE chanid = $chanid
+				AND starttime = '$starttime'
+				AND type IN (4,5)
+			ORDER BY mark,type
+		};
+		my $sth = $dbh->prepare($sql);
+		$sth->execute() or die "Execute \"$sql\": $sth->errstr\n";
+		my %type;
+		while (my $row = $sth->fetchrow_hashref) {
+			my ($frameno, $type) = @{%$row}{qw(mark type)};
+			$type{$frameno} = $type == 4 ? 0 : 1;
+		}
+		$sth->finish() or die "Finish \"$sql\": $sth->errstr\n";
+		my @framenos = sort { $a <=> $b } keys %type;
+		if (@framenos && $framenos[0] != 0) {
+			$type{0} = 1 - $type{$framenos[0]};
+		}
+		\%type;
+	}
+
+	my ($debugdir) = @_;
+	$debugdir = basename($debugdir);
+
+	my ($chanid, $starttime) = $debugdir =~ m#^(\d+)_(\d+)\.(nuv|mpg)-debug$#;
+	$starttime =~ s#^(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})$#
+		$1-$2-$3T$4:$5:$6#x;
+
+	my $marks = recordedmarkupdb($chanid, $starttime);
+
+	my $recordedmarkupplot = "recordedmarkup.plot";
+	open(PLOT, ">$recordedmarkupplot") or
+		die "open $recordedmarkupplot: $!\n";
+	foreach my $frameno (sort { $a <=> $b } keys %$marks) {
+		printf PLOT "%7u\t%3u\n", $frameno, $marks->{$frameno};
+	}
+	close(PLOT) or die "close $recordedmarkupplot: $!\n";
+
+	my $recordedmarkuppng = $recordedmarkupplot;
+	$recordedmarkuppng =~ s#\.plot$#.png#;
+	if (-s $recordedmarkupplot) {
+		print "\t", timestamp(time), ": $recordedmarkuppng\n";
+		open(GNUPLOT, "| gnuplot") or die "open gnuplot: $!\n";
+		print GNUPLOT <<EOM;
+set key off
+set style fill solid 1.0 noborder
+set terminal png transparent small size 640,192
+set output "$recordedmarkuppng"
+
+set xtics rotate
+set ylabel "Content"
+
+set xlabel "Frame Number"
+set format x
+plot "$recordedmarkupplot" using 1:2 with steps linewidth 5
+EOM
+		close(GNUPLOT) or die "close gnuplot: $!\n";
+	}
+	unlink $recordedmarkupplot;
+
+	my @output;
+	foreach my $file ($recordedmarkuppng) {
+		if (-s $file) {
+			if (!@output) {
+				push @output, <<EOM;
+
+<h2>RecordedMarkup</h2>
+
+EOM
+			}
+			push @output, <<EOM;
+<img src="$file"
+	title="$file" />
+EOM
+		}
+	}
+	@output;
+}
+
+sub templatefinder(;)
+{
+	if (-f "TemplateFinder.pgm") {
+		my $pgmmtime = (stat("TemplateFinder.pgm"))[9];
+		my $jpgmtime = (stat("TemplateFinder.jpg"))[9];
+		if (!-f "TemplateFinder.jpg" || $pgmmtime > $jpgmtime) {
+			convert("TemplateFinder.pgm", "TemplateFinder.jpg");
+			print "\t", timestamp(time), ": TemplateFinder.pgm\n";
+		}
+	}
+
+	my @output;
+	foreach my $file qw(TemplateFinder-scores.jpg
+			TemplateFinder-edgecounts.jpg TemplateFinder.jpg) {
+		if (-s $file) {
+			if (!@output) {
+				push @output, <<EOM;
+
+<h2>TemplateFinder</h2>
+
+EOM
+			}
+			print "\t", timestamp(time), ": $file\n";
+			push @output, <<EOM;
+<img src="$file"
+	title="$file" />
+EOM
+		}
+	}
+
+=cut
+	opendir(DIR, ".") or die "opendir $debugdir: $!\n";
+	my @frames = sort grep(/^TemplateFinder-\d+\.jpg$/, readdir(DIR));
+	closedir(DIR) or die "closedir $debugdir: $!\n";
+=cut
+
+	@output;
+}
+
+sub templatematcher(;)
+{
+	sub gnuplot_templatematcher($)
+	{
+		my ($tmfile) = @_;
+
+		my $tmmatchpng = $tmfile;
+		$tmmatchpng =~ s#\.txt$#-match.png#;
+		print "\t", timestamp(time), ": $tmmatchpng\n";
+		open(GNUPLOT, "| gnuplot") or die "open gnuplot: $!\n";
+		print GNUPLOT <<EOM;
+set key off
+set style fill solid 1.0 noborder
+set terminal png transparent small size 640,192
+set output "$tmmatchpng"
+
+set xtics rotate
+set ylabel "Matching Pixels"
+
+set xlabel "Frame Number"
+set format x
+plot "$tmfile" using 1 with points pointtype 7 pointsize 0.3
+EOM
+		close(GNUPLOT) or die "close gnuplot: $!\n";
+
+		my $tmhistplot = $tmfile;
+		$tmhistplot =~ s#\.txt$#-hist.plot#;
+		print "\t", timestamp(time), ": $tmhistplot\n";
+		my %freq;
+		my $nframes = 0;
+		open(TMFILE, $tmfile) or die "open $tmfile: $!\n";
+		while (<TMFILE>) {
+			my $matchcnt = $_;
+			chomp $matchcnt;
+			$freq{$matchcnt}++;
+			$nframes++;
+		}
+		close(TMFILE) or die "close $tmfile: $!\n";
+
+		my @freqkeys = sort { $a <=> $b } keys %freq;
+		my ($minmatchcnt, $maxmatchcnt) = @freqkeys[0, $#freqkeys];
+		my $matchrange = $maxmatchcnt - $minmatchcnt;
+		my $matchstart = $minmatchcnt + $matchrange * 0.05;
+		my $matchend = $minmatchcnt + $matchrange * 0.95;
+
+		open(PLOT, ">$tmhistplot") or die "open $tmhistplot: $!\n";
+		foreach my $matchcnt (@freqkeys) {
+			# Don't plot outliers that tend to lie at edges of the
+			# graphed domain
+			if ($matchcnt >= $matchstart && $matchcnt < $matchend)
+			{
+				printf PLOT "%6u %12.6f\n",
+				       $matchcnt, $freq{$matchcnt} / $nframes;
+			}
+		}
+		close(PLOT) or die "close $tmhistplot: $!\n";
+
+		my $tmhistpng = $tmfile;
+		$tmhistpng =~ s#\.txt$#-hist.png#;
+		if (-s $tmhistplot) {
+			print "\t", timestamp(time), ": $tmhistpng\n";
+			open(GNUPLOT, "| gnuplot") or die "open gnuplot: $!\n";
+			print GNUPLOT <<EOM;
+set key off
+set style fill solid 1.0 noborder
+set terminal png transparent small size 640,192
+set output "$tmhistpng"
+
+set xtics rotate
+set ylabel "Fraction of Frames"
+
+set xlabel "Template Edge Pixels Matched"
+set format x
+plot "$tmhistplot" using 1:2 with points pointtype 7 pointsize 0.5
+EOM
+			close(GNUPLOT) or die "close gnuplot: $!\n";
+		}
+		unlink $tmhistplot;
+
+		return ($tmmatchpng, $tmhistpng);
+	}
+
+	my $tmfile = "";
+	foreach my $testfile qw(TemplateMatcher-pgm.txt
+			TemplateMatcher-yuv.txt) {
+		if (-s $testfile) {
+			$tmfile = $testfile;
+			last;
+		}
+	}
+	return "" if !$tmfile;
+
+	my @tmgraphs = gnuplot_templatematcher($tmfile);
+	my @output;
+	if (@tmgraphs) {
+		push @output, <<EOM;
+
+<h2>TemplateMatcher</h2>
+
+EOM
+
+		my $first = 1;
+		foreach my $tmgraph (@tmgraphs) {
+			if (-s $tmgraph) {
+				if (!$first) {
+					push @output, <<EOM;
+<br />
+EOM
+				}
+				push @output, <<EOM;
+<img src="$tmgraph"
+	title="$tmgraph" />
+EOM
+				$first = 0;
+			}
+		}
+	}
+	@output;
+}
+
+sub histogramanalyzer(;)
+{
+	sub gnuplot_histogramanalyzer($)
+	{
+		my ($hafile) = @_;
+
+		my $halineno = 0;
+
+		my $columnsplot = $hafile;
+		$columnsplot =~ s#\.txt$#-columns.plot#;
+		open(HAFILE, $hafile) or die "open $hafile: $!\n";
+		print "\t", timestamp(time), ": $columnsplot\n";
+		open(PLOT, ">$columnsplot") or die "open $columnsplot: $!\n";
+		$halineno = 0;
+		while (<HAFILE>) {
+			my ($mincol, $width) = (split)[6,4];
+			my $maxcol = $mincol + $width;
+			my $midcol = ($mincol + $maxcol) / 2;
+			print PLOT "$halineno\t$midcol\t$mincol\t$maxcol\n";
+			$halineno++;
+		}
+		close(PLOT) or die "close $columnsplot: $!\n";
+		close(HAFILE) or die "close $hafile: $!\n";
+
+		my $columnspng = $hafile;
+		$columnspng =~ s#\.txt$#-columns.png#;
+		if (-s $columnsplot) {
+			print "\t", timestamp(time), ": $columnspng\n";
+			open(GNUPLOT, "| gnuplot") or die "open gnuplot: $!\n";
+			print GNUPLOT <<EOM;
+set key off
+set style fill solid 1.0 noborder
+set terminal png transparent small size 640,192
+set output "$columnspng"
+
+set xtics rotate
+set ylabel "Border Min/Max Column"
+
+set xlabel "Frame Number"
+set format x
+set bars 0
+plot "$columnsplot" with yerrorlines
+EOM
+			close(GNUPLOT) or die "close gnuplot: $!\n";
+		}
+		unlink $columnsplot;
+
+		my $rowsplot = $hafile;
+		$rowsplot =~ s#\.txt$#-rows.plot#;
+		open(HAFILE, $hafile) or die "open $hafile: $!\n";
+		print "\t", timestamp(time), ": $rowsplot\n";
+		open(PLOT, ">$rowsplot") or die "open $rowsplot: $!\n";
+		$halineno = 0;
+		while (<HAFILE>) {
+			my ($minrow, $height) = (split)[7,5];
+			my $maxrow = $minrow + $height;
+			my $midrow = ($minrow + $maxrow) / 2;
+			print PLOT "$halineno\t$midrow\t$minrow\t$maxrow\n";
+			$halineno++;
+		}
+		close(PLOT) or die "close $rowsplot: $!\n";
+		close(HAFILE) or die "close $hafile: $!\n";
+
+		my $rowspng = $hafile;
+		$rowspng =~ s#\.txt$#-rows.png#;
+		if (-s $rowsplot) {
+			print "\t", timestamp(time), ": $rowspng\n";
+			open(GNUPLOT, "| gnuplot") or die "open gnuplot: $!\n";
+			print GNUPLOT <<EOM;
+set key off
+set style fill solid 1.0 noborder
+set terminal png transparent small size 640,192
+set output "$rowspng"
+
+set xtics rotate
+set ylabel "Border Min/Max Row"
+
+set xlabel "Frame Number"
+set format x
+set bars 0
+plot "$rowsplot" with yerrorlines
+EOM
+			close(GNUPLOT) or die "close gnuplot: $!\n";
+		}
+		unlink $rowsplot;
+
+		my $blankpng = $hafile;
+		$blankpng =~ s#\.txt$#-blanks.png#;
+		print "\t", timestamp(time), ": $blankpng\n";
+		open(GNUPLOT, "| gnuplot") or die "open gnuplot: $!\n";
+		print GNUPLOT <<EOM;
+set key off
+set style fill solid 1.0 noborder
+set terminal png transparent small size 640,192
+set output "$blankpng"
+
+set xtics rotate
+set ylabel "Blank"
+
+set xlabel "Frame Number"
+set format x
+plot "$hafile" using 1 with points pointtype 7 pointsize 0.3
+EOM
+		close(GNUPLOT) or die "close gnuplot: $!\n";
+
+		my $greypng = $hafile;
+		$greypng =~ s#\.txt$#-greylevels.png#;
+		print "\t", timestamp(time), ": $greypng\n";
+		open(GNUPLOT, "| gnuplot") or die "open gnuplot: $!\n";
+		print GNUPLOT <<EOM;
+set key off
+set style fill solid 1.0 noborder
+set terminal png transparent small size 640,192
+set output "$greypng"
+
+set xtics rotate
+set ylabel "Median Grey Level"
+set yrange [0:225]
+
+set xlabel "Frame Number"
+set format x
+plot "$hafile" using 3 with points pointtype 7 pointsize 0.3
+EOM
+		close(GNUPLOT) or die "close gnuplot: $!\n";
+
+		return ($columnspng, $rowspng, $blankpng, $greypng);
+	}
+
+	my $hafile = "";
+	foreach my $testfile qw(HistogramAnalyzer-pgm.txt
+			HistogramAnalyzer-yuv.txt) {
+		if (-s $testfile) {
+			$hafile = $testfile;
+			last;
+		}
+	}
+	return "" if !$hafile;
+
+	my @histographs = gnuplot_histogramanalyzer($hafile);
+	my @output;
+	if (@histographs) {
+		push @output, <<EOM;
+
+<h2>HistogramAnalyzer</h2>
+
+EOM
+		my $first = 1;
+		foreach my $histograph (@histographs) {
+			if (-s $histograph) {
+				if (!$first) {
+					push @output, <<EOM;
+<br />
+EOM
+				}
+				push @output, <<EOM;
+<img src="$histograph"
+	title="$histograph" />
+EOM
+				$first = 0;
+			}
+		}
+	}
+	@output;
+}
+
+sub footer(;)
+{
+	return <<EOM;
+
+</body>
+
+</html>
+EOM
+}
+
+sub analyze($)
+{
+	my ($debugdir) = @_;
+
+	chdir($debugdir) or die "chdir $debugdir: $!\n";
+	my @output;
+	push @output, header($debugdir);
+	push @output, recordedmarkup($debugdir);
+	push @output, templatefinder();
+	push @output, templatematcher();
+	push @output, histogramanalyzer();
+	push @output, footer();
+
+	my $output = "index.html";
+	open(OUTPUT, ">$output") or die "open $output: $!\n";
+	print OUTPUT @output or die "print $output: $!\n";
+	close(OUTPUT) or die "close $output: $!\n";
+}
+
+if (!@ARGV) {
+	my $basename = basename($0);
+	print <<EOM;
+Usage: $0 <debugdir> [debugdir...]
+Generates an index.html file with graphical report on mythcommflag analysis
+Requires ImageMagick and Gnuplot
+
+Example: $basename /media/myth/recordedtv/1051_20061214210000.nuv-debug
+EOM
+}
+
+umask(022);
+my $cwd = getcwd();
+foreach my $debugdir (@ARGV) {
+	print timestamp(time), ": $debugdir\n";
+	analyze($debugdir);
+	chdir($cwd) or die "chdir $cwd: $!\n";
+}

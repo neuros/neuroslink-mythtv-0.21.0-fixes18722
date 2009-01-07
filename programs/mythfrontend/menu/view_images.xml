@@ -1,0 +1,56 @@
+<mythmenu name="LIBRARY">
+
+   <button>
+     <type>IMAGES</type>
+     <text>View Local Pictures</text>
+     <text lang="IT">Immagini</text>
+     <text lang="ES">Fotos</text>
+     <text lang="CA">Imatges</text>
+     <text lang="NL">Foto's</text>
+     <text lang="FR">Gallerie photo</text>
+     <text lang="DE">Bilder ansehen</text>
+     <text lang="DK">Billeder</text>
+     <text lang="IS">Ljósmyndir</text>
+     <text lang="PT">Ver Fotos</text>
+     <text lang="SV">Visa bilder</text>
+     <text lang="JA">イメージ</text>
+     <text lang="FI">Kuvagalleria</text>
+     <text lang="ZH_TW">照相館</text>
+     <text lang="SI">Gledanje slik</text>
+     <text lang="ET">Pildialbum</text>
+     <text lang="NB">Bildegalleri</text>
+     <text lang="CZ">Galerie fotek</text>
+     <text lang="RU">Изображения</text>
+     <text lang="PL">Galeria zdjęć</text>
+     <text lang="HE">גלרית תמונות</text>
+     <action>PLUGIN mythgallery</action>
+     <depends>mythgallery</depends>
+   </button>
+   
+   <button>
+     <type>IMAGES_FLICKR</type>
+     <text>Flickr.com Pictures</text>
+     <text lang="IT">Flickr.com Pictures</text>
+     <text lang="ES">Flickr.com Pictures</text>
+     <text lang="CA">Flickr.com Pictures</text>
+     <text lang="NL">Flickr.com Pictures</text>
+     <text lang="FR">Flickr.com Pictures</text>
+     <text lang="DE">Flickr.com Pictures</text>
+     <text lang="DK">Flickr.com Pictures</text>
+     <text lang="IS">Flickr.com Pictures</text>
+     <text lang="PT">Flickr.com Pictures</text>
+     <text lang="SV">Flickr.com Pictures</text>
+     <text lang="JA">Flickr.com Pictures</text>
+     <text lang="FI">Flickr.com Pictures</text>
+     <text lang="ZH_TW">Flickr.com Pictures</text>
+     <text lang="SI">Flickr.com Pictures</text>
+     <text lang="ET">Flickr.com Pictures</text>
+     <text lang="NB">Flickr.com Pictures</text>
+     <text lang="CZ">Flickr.com Pictures</text>
+     <text lang="RU">Flickr.com Pictures</text>
+     <text lang="PL">Flickr.com Pictures</text>
+     <text lang="HE">Flickr.com Pictures</text>
+     <action>EXEC /usr/bin/firefox http://www.flickr.com</action>
+   </button>
+   
+</mythmenu>

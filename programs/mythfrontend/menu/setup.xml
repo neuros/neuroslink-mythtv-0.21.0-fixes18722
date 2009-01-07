@@ -1,0 +1,111 @@
+<mythmenu name="MAIN">
+
+   <button>
+     <type>SETUP_GENERAL</type>
+     <text>1. General</text>
+     <text lang="IT">1. Generale</text>
+     <text lang="PT">1. Geral</text>
+     <text lang="SV">1. Generellt</text>
+     <text lang="JA">1. 一般</text>
+     <text lang="DE">1. Allgemeines</text>
+     <text lang="FI">1. Yleiset</text>
+     <text lang="FR">1. Général</text>
+     <text lang="SI">1. Splošno</text>
+     <text lang="ET">1. Üldine</text>
+     <text lang="NB">1 Generelt</text>
+     <text lang="DK">1. Generelt</text>
+     <text lang="ES">1. General</text>
+     <text lang="CZ">1. Obecný</text>
+     <text lang="RU">1. Общие</text>
+     <action>GENERAL</action>
+   </button>
+
+   <button>
+     <type>SETUP_CAPTURE_CARDS</type>
+     <text>2. Capture cards</text>
+     <text lang="IT">2. Schede di Acquisizione</text>
+     <text lang="PT">2. Placas de Captura</text>
+     <text lang="SV">2. TV-kort</text>
+     <text lang="JA">2. キャプチャカード</text>
+     <text lang="DE">2. TV-Karten</text>
+     <text lang="FI">2. TV-kortit</text>
+     <text lang="FR">2. Cartes d'acquisition</text>
+     <text lang="SI">2. Kartice za zajem</text>
+     <text lang="ET">2. TV-kaardid</text>
+     <text lang="NB">2 TV-kort</text>
+     <text lang="DK">2. TV-kort</text>
+     <text lang="ES">2. Capturadoras</text>
+     <text lang="CZ">2. Zachytávací karty</text>
+     <text lang="RU">2. Карты захвата</text>
+     <action>CAPTURE CARDS</action>
+   </button>
+
+   <button>
+     <type>SETUP_VIDEO_SOURCES</type>
+     <text>3. Video sources</text>
+     <text lang="IT">3. Fonte Video</text>
+     <text lang="PT">3. Fontes de Vídeo</text>
+     <text lang="SV">3. Videokällor</text>
+     <text lang="JA">3. ビデオソース</text>
+     <text lang="DE">3. Videoquellen</text>
+     <text lang="FI">3. Kuvanlähteet</text>
+     <text lang="FR">3. Sources vidéo</text>
+     <text lang="SI">3. Video viri</text>
+     <text lang="ET">3. Videosisendid</text>
+     <text lang="NB">3 Videokilder</text>
+     <text lang="DK">3. Videokilder</text>
+     <text lang="ES">3. Fuentes de Vídeo</text>
+     <text lang="CZ">3. Zdroje obrazu</text>
+     <text lang="RU">3. Видео источники</text>
+     <action>VIDEO SOURCES</action>
+   </button>
+
+   <button>
+     <type>SETUP_INPUT_CONNECTIONS</type>
+     <text>4. Input connections</text>
+     <text lang="IT">4. Connessioni di Ingresso</text>
+     <text lang="PT">4. Ligações de Entrada</text>
+     <text lang="SV">4. Anslutningar</text>
+     <text lang="JA">4. 入力とソースの接続</text>
+     <text lang="DE">4. Verknüpfungen</text>
+     <text lang="FI">4. Sisääntuloasetukset</text>
+     <text lang="FR">4. Entrées Vidéos</text>
+     <text lang="SI">4. Vhodne povezave</text>
+     <text lang="ET">4. Sisendite ühendused</text>
+     <text lang="NB">4 Inndata</text>
+     <text lang="DK">4. Indgange</text>
+     <text lang="ES">4. Conexiones</text>
+     <text lang="CZ">4. Připojení vstupů</text>
+     <text lang="RU">4. Соединение входов</text>
+     <action>CARD INPUTS</action>
+   </button>
+
+   <button>
+     <type>SETUP_CHANNEL_EDITOR</type>
+     <text>5. Channel Editor</text>
+     <text lang="IT">5. Modifica Canali</text>
+     <text lang="SV">5. Kanaleditor</text>
+     <text lang="JA">5. チャンネル設定</text>
+     <text lang="DE">5. Sender bearbeiten</text>
+     <text lang="FI">5. Kanavanviritys</text>
+     <text lang="FR">5. Editeur de chaînes</text>
+     <text lang="SI">5. Urejanje kanalov</text>
+     <text lang="ET">5. Kanaliredaktor</text>
+     <text lang="NB">5 Kanalredigerer</text>
+     <text lang="DK">5. Kanal opsætning</text>
+     <text lang="ES">5. Editor Canales</text>
+     <text lang="CZ">5. Editor kanálů</text>
+     <text lang="RU">5. Редактор каналов</text>
+     <action>CHANNEL EDITOR</action>
+   </button>
+
+   <button>
+     <type>SETUP_STORAGE_GROUPS</type>
+     <text>6. Storage Directories</text>
+     <text lang="IT">6. Cartelle</text>
+     <text lang="FI">Tallennusryhmät</text>
+     <text lang="SV">Lagringsgrupper</text>
+     <action>STORAGE GROUPS</action>
+   </button>
+
+</mythmenu>

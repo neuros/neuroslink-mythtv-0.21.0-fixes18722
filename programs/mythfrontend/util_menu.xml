@@ -1,0 +1,106 @@
+<mythmenu name="UTIL">
+
+   <button>
+      <type>MUSIC_PLAYLIST</type>
+      <text>Music Tools</text>
+      <text lang="IT">Opzioni Musica</text>
+      <text lang="DE">Musik verwalten</text>
+      <text lang="IS">Tónlistartól</text>
+      <text lang="NL">Muziek Beheren</text>
+      <text lang="SV">Musikverktyg</text>
+      <text lang="FR">Gestion Musiques</text>
+      <text lang="JA">ミュージックツール</text>
+      <text lang="FI">Musiikkityökalut</text>
+      <text lang="ZH_TW">音樂工具</text>
+      <text lang="SI">Glasbena orodja</text>
+      <text lang="ET">Muusikatööriistad</text>
+      <text lang="NB">Musikkverktøy</text>
+      <text lang="DK">Musikværktøjer</text>
+      <text lang="ES">Gestionar Música</text>
+      <text lang="PT">Gerir Música</text>
+      <text lang="CZ">Hudební nástroje</text>
+      <text lang="RU">Работа с музыкой</text>
+      <text lang="PL">Narzędzia muzyczne</text>
+      <text lang="HE">כלי מוסיקה</text>
+      <action>PLUGIN mythmusic</action>
+      <depends>mythmusic</depends>	
+   </button>
+
+   <button>
+      <type>VIDEO_MANAGER</type>
+      <text>Video Manager</text>
+      <text lang="IT">Gestione Video</text>
+      <text lang="ES">Gestionar Videos</text>
+      <text lang="CA">Gestionar vÃ­deos</text>
+      <text lang="DK">Filmopsætning</text>
+      <text lang="DE">Videos verwalten</text>
+      <text lang="IS">Kvikmyndatól</text>
+      <text lang="PT">Gerir Filmes</text>
+      <text lang="SV">Filmhanterare</text>
+      <text lang="FR">Gestion Vidéos</text>
+      <text lang="NL">Films Beheren</text>
+      <text lang="JA">ビデオマネージャー</text>
+      <text lang="FI">Videonhallinta</text>
+      <text lang="ZH_TW">電影工具</text>
+      <text lang="SI">Video orodja</text>
+      <text lang="ET">Videohaldus</text>
+      <text lang="NB">Videobehandler</text>
+      <text lang="CZ">Manažer filmů</text>
+      <text lang="RU">Управление фильмами</text>
+      <text lang="PL">Zarządca Filmów</text>
+      <text lang="HE">מנהל וידאו</text>
+      <action>JUMP Video Manager</action>
+      <depends>mythvideo</depends>
+   </button>
+    
+   <button>
+      <type>SETUP_KEYS</type>
+      <text>Edit Keys</text>
+      <text lang="IT">Modifica Tasti</text>
+      <text lang="FR">Configurer les touches</text>
+      <text lang="IS">Stilla takka</text>
+      <text lang="DE">Tastenbelegung ändern</text>
+      <text lang="FI">Muokkaa Näppäimiä</text>
+      <text lang="DK">Redigér tasteindstillinger</text>
+      <text lang="SV">Ändra knappar</text>
+      <text lang="ES">Editar Teclas</text>
+      <text lang="PT">Configurar Teclas</text>
+      <text lang="ET">Klahvide muutmine</text>
+      <text lang="NL">Toetsen Aanpassen</text>
+      <text lang="CZ">Editovat klávesy</text>
+      <text lang="JA">キー設定</text>
+      <text lang="RU">Редактировать клавиши</text>
+      <text lang="SI">Urejanje tipk</text>
+      <text lang="PL">Edytuj klawisze</text>
+      <text lang="HE">עריכת מקשים</text>
+      <action>PLUGIN mythcontrols</action>
+      <depends>mythcontrols</depends>	
+   </button>
+      
+   <button>
+      <type>SETUP_MENU</type>
+      <text>Setup</text>
+      <text lang="IT">Impostazioni</text>
+      <text lang="ES">Configurar</text>
+      <text lang="CA">Configurar</text>
+      <text lang="FR">Paramètres</text>
+      <text lang="DE">Konfiguration</text>
+      <text lang="DK">Indstillinger</text>
+      <text lang="IS">Stillingar</text>
+      <text lang="NL">Configuratie</text>
+      <text lang="PT">Configurações</text>
+      <text lang="SV">Inställningar</text>
+      <text lang="JA">設定</text>
+      <text lang="FI">Asetukset</text>
+      <text lang="ZH_TW">設定</text>
+      <text lang="SI">Nastavitve</text>
+      <text lang="ET">Sätted</text>
+      <text lang="NB">Innstillinger</text>
+      <text lang="CZ">Nastavení</text>
+      <text lang="RU">Настройки</text>
+      <text lang="PL">Ustawienia</text>
+      <text lang="HE">הגדרה</text>
+      <action>MENU main_settings.xml</action>
+   </button>
+
+</mythmenu>

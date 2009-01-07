@@ -1,0 +1,160 @@
+Note For Theme Developers:  The following is a list of all the button
+types available in the default xml files.  Each menu item has been given
+its own buttontype to allow theme makers to have greater flexibility
+when creating icons for their theme.  If you do not have an individual
+icon for a particular menu item in your theme, you may choose to make an
+entry in your theme.xml that links to a duplicate icon picture in your
+theme.
+
+info_menu.xml
+
+      1. PHONE
+      2. NEWS
+      3. MOVIETIMES
+      4. WEATHER
+      5. NETFLIX
+      6. WEBPAGE
+      7. RECIPE
+      8. TV_STATUS
+      9. ZONEMINDER
+
+info_settings.xml
+
+      1. SETTINGS_WEATHER
+      2. SETTINGS_NEWS
+      3. SETTINGS_MOVIETIME
+      4. SETTINGS_NETFLIX
+      5. SETTINGS_WEBPAGE
+      6. SETTINGS_RECIPE
+
+library.xml
+
+      1. TV_WATCH_RECORDINGS
+      2. VIDEO_BROWSER
+      3. MUSIC_PLAY
+      4. FM
+      5. IMAGES
+      6. GAME
+
+mainmenu.xml
+
+      1. TV_WATCH_TV
+      2. MENU_MEDIA_LIBRARY
+      3. MENU_MANAGE_RECORDINGS
+      4. MENU_INFO_CENTER
+      5. MENU_OPTICAL_DISKS
+      6. MENU_UTILITIES_SETUP
+      7. SHUTDOWN
+
+main_settings.xml
+
+      1. SETTINGS_GENERAL
+      2. SETTINGS_APPEARANCE
+      3. SETTINGS_TV
+      4. SETTINGS_MEDIA
+      5. SETTINGS_INFO_CENTER
+      6. SETTINGS_XBOX
+      7. PHONE
+      8. ZONEMINDER
+
+manage_recordings.xml
+
+      1. TV_SCHEDULE_RECORDINGS
+      2. TV_RECPRIORITIES
+      3. TV_UPCOMING_RECORDINGS
+      4. TV_DELETE
+      5. TV_PREVIOUS
+
+media_settings.xml
+
+      1. SETTINGS_MUSIC
+      2. SETTINGS_VIDEO
+      3. SETTINGS_IMAGES
+      4. SETTINGS_GAME
+      5. SETTINGS_FM
+      6. SETTINGS_BURN
+      7. SETTINGS_ARCHIVE
+
+netflix_menu.xml
+
+      1. NETFLIX_QUEUE
+      2. NETFLIX_BROWSE
+      3. NETFLIX_HISTORY
+
+optical_menu.xml
+
+      1. DVD_PLAY
+      2. VCD_PLAY
+      3. DVD_RIP
+      4. BURN
+      5. ARCHIVE
+      6. MUSIC_RIP
+      7. EJECT
+
+recpriorities_settings.xml
+
+      1. TV_RECPRIORITIES_SETTINGS_GENERAL
+      2. TV_RECPRIORITIES_CHANNEL
+      3. TV_RECPRIORITIES_CUSTOM
+
+tv_lists.xml
+
+      1. TV_SEARCH_NEW_TITLES
+      2. TV_SEARCH_MOVIES
+      3. TV_SEARCH_CATEGORIES
+      4. TV_SEARCH_CHANNELS
+      5. TV_SEARCH_TIMES
+
+tvmenu.xml
+
+      1. TV_WATCH_TV
+      2. TV_SCHEDULE_RECORDINGS
+      3. TV_WATCH_RECORDINGS
+      4. TV_DELETE
+      5. TV_PLAYBACK
+      6. TV_STATUS
+
+tv_schedule
+    
+      1. TV_PROGRAM_GUIDE
+      2. TV_PROGFIND
+      3. TV_SEARCH_WORDS
+      4. TV_SEARCH_LISTS
+      5. TV_SCHEDULE
+      6. TV_CUSTOM_RECORD
+      7. TV_MANUAL_SCHEDULE
+
+tv_search.xml
+
+      1. TV_SEARCH_TITLES
+      2. TV_SEARCH_KEYWORDS
+      3. TV_SEARCH_PEOPLE
+      4. TV_SEARCH_POWER
+      5. TV_SEARCH_STORED
+
+tv_settings.xml
+
+      1. TV_SETTINGS_GENERAL
+      2. TV_SETTINGS_PROGRAM_GUIDE
+      3. TV_SETTINGS_PLAYBACK
+      4. TV_SETTINGS_PLAYBACK_GROUPS
+      5. TV_SETTINGS_RECORDING_PROFILES
+      6. TV_SETTINGS_RECPRIORITIES
+      7. TV_SETTINGS_PLAYBACK_OSD
+
+util_menu.xml
+
+      1. MUSIC_PLAYLIST
+      2. VIDEO_MANAGER
+      3. SETUP_KEYS
+      4. SETUP_MENU
+      5. SCREENSETUPWIZARD // new appearance settings helper
+
+setup.xml
+
+      1. SETUP_GENERAL
+      2. SETUP_CAPTURE_CARDS
+      3. SETUP_VIDEO_SOURCES
+      4. SETUP_INPUT_CONNECTIONS
+      5. SETUP_CHANNEL_EDITOR
+      6. SETUP_STORAGE_GROUPS

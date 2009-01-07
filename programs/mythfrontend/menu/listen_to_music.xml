@@ -1,0 +1,120 @@
+<mythmenu name="LIBRARY">
+
+   <button>
+      <type>MUSIC_PLAY</type>
+      <text>Play Local Music</text>
+      <text lang="IT">Esegui Brani Musicali</text>
+      <text lang="ES">Escuchar Música</text>
+      <text lang="CA">Escoltar Música</text>
+      <text lang="DE">Musik hören</text>
+      <text lang="DK">Afspil musik</text>
+      <text lang="IS">Spila tónlist</text>
+      <text lang="NL">Muziek Afspelen</text>
+      <text lang="PT">Tocar Músicas</text>
+      <text lang="SV">Spela musik</text>
+      <text lang="FR">Écouter de la musique</text>
+      <text lang="JA">ミュージック再生</text>
+      <text lang="FI">Kuuntele Musiikkia</text>
+      <text lang="ZH_TW">播放音樂</text>
+      <text lang="SI">Predvajanje glasbe</text>
+      <text lang="ET">Kuula muusikat</text>
+      <text lang="NB">Hør på musikk</text>
+      <text lang="CZ">Poslouchat muziku</text>
+      <text lang="RU">Слушать музыку</text>
+      <text lang="PL">Odtwarzaj muzykę</text>
+      <text lang="HE">האזנה למוסיקה</text>
+      <action>JUMP Play music</action>
+      <depends>mythmusic</depends>
+   </button>
+   
+
+   <button>
+     <type>INTERNET_RADIO</type>
+     <text>Play Internet Radio (Last.FM)</text>
+     <text lang="IT">Play Internet Radio (Last.FM)</text>
+     <text lang="ES">Play Internet Radio (Last.FM)</text>
+     <text lang="CA">Play Internet Radio (Last.FM)</text>
+     <text lang="DE">Play Internet Radio (Last.FM)</text>
+     <text lang="DK">Play Internet Radio (Last.FM)</text>
+     <text lang="IS">Play Internet Radio (Last.FM)</text>
+     <text lang="PT">Play Internet Radio (Last.FM)</text>
+     <text lang="SV">Play Internet Radio (Last.FM)</text>
+     <text lang="FR">Play Internet Radio (Last.FM)</text>
+     <text lang="NL">Play Internet Radio (Last.FM)</text>
+     <text lang="JA">Play Internet Radio (Last.FM)</text>
+     <text lang="FI">Play Internet Radio (Last.FM)</text>
+     <text lang="ZH_TW">Play Internet Radio (Last.FM)</text>
+     <text lang="SI">Play Internet Radio (Last.FM)</text>
+     <text lang="ET">Play Internet Radio (Last.FM)</text>
+     <text lang="NB">Play Internet Radio (Last.FM)</text>
+     <text lang="CZ">Play Internet Radio (Last.FM)</text>
+     <text lang="RU">Play Internet Radio (Last.FM)</text>
+     <text lang="PL">Play Internet Radio (Last.FM)</text>
+     <text lang="HE">Play Internet Radio (Last.FM)</text>
+     <alttext lang="SV">Play Internet Radio (Last.FM)</alttext>
+     <alttext lang="ET">Play Internet Radio (Last.FM)</alttext>
+     <alttext lang="RU">Play Internet Radio (Last.FM)</alttext>
+     <alttext lang="PL">Play Internet Radio (Last.FM)</alttext>
+     <action>EXEC /usr/bin/firefox http://www.last.fm</action>
+   </button>
+
+   <button>
+     <type>INTERNET_MUSIC</type>
+     <text>Find Internet Music (Songza.com)</text>
+     <text lang="IT">Find Internet Music (Songza.com)</text>
+     <text lang="ES">Find Internet Music (Songza.com)</text>
+     <text lang="CA">Find Internet Music (Songza.com)</text>
+     <text lang="DE">Find Internet Music (Songza.com)</text>
+     <text lang="DK">Find Internet Music (Songza.com)</text>
+     <text lang="IS">Find Internet Music (Songza.com)</text>
+     <text lang="PT">Find Internet Music (Songza.com)</text>
+     <text lang="SV">Find Internet Music (Songza.com)</text>
+     <text lang="FR">Find Internet Music (Songza.com)</text>
+     <text lang="NL">Find Internet Music (Songza.com)</text>
+     <text lang="JA">Find Internet Music (Songza.com)</text>
+     <text lang="FI">Find Internet Music (Songza.com)</text>
+     <text lang="ZH_TW">Find Internet Music (Songza.com)</text>
+     <text lang="SI">Find Internet Music (Songza.com)</text>
+     <text lang="ET">Find Internet Music (Songza.com)</text>
+     <text lang="NB">Find Internet Music (Songza.com)</text>
+     <text lang="CZ">Find Internet Music (Songza.com)</text>
+     <text lang="RU">Find Internet Music (Songza.com)</text>
+     <text lang="PL">Find Internet Music (Songza.com)</text>
+     <text lang="HE">Find Internet Music (Songza.com)</text>
+     <alttext lang="SV">Find Internet Music (Songza.com)</alttext>
+     <alttext lang="ET">Find Internet Music (Songza.com)</alttext>
+     <alttext lang="RU">Find Internet Music (Songza.com)</alttext>
+     <alttext lang="PL">Find Internet Music (Songza.com)</alttext>
+     <action>EXEC /usr/bin/firefox http://www.songza.com</action>
+   </button>
+
+
+   <button>
+     <type>FM</type>
+     <text>Listen to the radio</text>
+     <text lang="IT">Ascolta la Radio</text>
+     <text lang="SV">Lyssna på radio</text>
+     <text lang="NL">Radio Luisteren</text>
+     <text lang="JA">ラジオ放送</text>
+     <text lang="DE">Radio hören</text>
+     <text lang="FR">Ecouter la radio</text>
+     <text lang="FI">Kuuntele Radiota</text>
+     <text lang="IS">Hlusta á útvarp</text>
+     <text lang="SI">Poslušanje radia</text>
+     <text lang="ET">Kuula raadiot</text>
+     <text lang="NB">Hør på radio</text>
+     <text lang="DK">Hør radio</text>
+     <text lang="ES">Escuchar Radio</text>
+     <text lang="PT">Ouvir Rádio</text>
+     <text lang="CZ">Poslouchat rádio</text>
+     <text lang="RU">Слушать радио</text>
+     <text lang="PL">Słuchaj radia</text>
+     <text lang="HE">האזנה לרדיו</text>
+     <alttext lang="SV">Radio</alttext>
+     <alttext lang="PT">Rádio</alttext>
+     <alttext lang="ET">Raadio</alttext>
+     <alttext lang="RU">Радио</alttext>
+     <action>PLUGIN mythFM</action>
+     <depends>mythFM mythfm</depends>
+   </button>
+</mythmenu>
